@@ -1,0 +1,478 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: #0D1117;
+  color: #E6EDF3;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #161B22;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #30363D;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #484F58;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #6E7681;
+}
+
+/* Selection Color */
+::selection {
+  background-color: rgba(88, 166, 255, 0.3);
+  color: #E6EDF3;
+}
+
+/* Focus Ring for Accessibility */
+:focus-visible {
+  outline: 2px solid #58A6FF;
+  outline-offset: 2px;
+}
+
+/* Scrollbar for Text Areas and Code */
+.font-mono::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.font-mono::-webkit-scrollbar-track {
+  background: #0D1117;
+}
+
+.font-mono::-webkit-scrollbar-thumb {
+  background: #30363D;
+  border: 2px solid #0D1117;
+  border-radius: 5px;
+}
+
+.font-mono::-webkit-scrollbar-thumb:hover {
+  background: #484F58;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-2px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(2px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(88, 166, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(88, 166, 255, 0.25);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 150ms ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 150ms ease-out;
+}
+
+.animate-slideDown {
+  animation: slideDown 150ms ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-shake {
+  animation: shake 300ms ease-in-out;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Loading Spinner */
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #30363D;
+  border-top-color: #58A6FF;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #21262D;
+  border: 1px solid #30363D;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 150ms ease-out, visibility 150ms ease-out;
+  z-index: 1000;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Line Numbers for Code */
+.line-numbers {
+  counter-reset: line;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.line-numbers > div::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 40px;
+  padding-right: 12px;
+  text-align: right;
+  color: #6E7681;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Syntax Highlighting Classes */
+.syntax-key {
+  color: #79C0FF;
+}
+
+.syntax-string {
+  color: #A5D6FF;
+}
+
+.syntax-number {
+  color: #79C0FF;
+}
+
+.syntax-boolean {
+  color: #FF7B72;
+}
+
+.syntax-null {
+  color: #FF7B72;
+}
+
+.syntax-brackets {
+  color: #E6EDF3;
+}
+
+.syntax-operator {
+  color: #8B949E;
+}
+
+/* Status Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
+  gap: 6px;
+}
+
+.badge-success {
+  background-color: rgba(63, 185, 80, 0.15);
+  color: #3FB950;
+  border: 1px solid rgba(63, 185, 80, 0.3);
+}
+
+.badge-error {
+  background-color: rgba(248, 81, 73, 0.15);
+  color: #F85149;
+  border: 1px solid rgba(248, 81, 73, 0.3);
+}
+
+.badge-warning {
+  background-color: rgba(210, 153, 34, 0.15);
+  color: #D29922;
+  border: 1px solid rgba(210, 153, 34, 0.3);
+}
+
+.badge-info {
+  background-color: rgba(121, 192, 255, 0.15);
+  color: #79C0FF;
+  border: 1px solid rgba(121, 192, 255, 0.3);
+}
+
+/* File Drop Zone */
+.drop-zone {
+  border: 2px dashed #30363D;
+  border-radius: 12px;
+  background-color: rgba(22, 27, 34, 0.5);
+  transition: all 200ms ease-out;
+}
+
+.drop-zone.active {
+  border-color: #58A6FF;
+  background-color: rgba(88, 166, 255, 0.1);
+}
+
+/* Button Styles */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0D1117;
+  background-color: #58A6FF;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.btn-primary:hover {
+  background-color: #79B8FF;
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  background-color: #4393E6;
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #E6EDF3;
+  background-color: transparent;
+  border: 1px solid #30363D;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.btn-secondary:hover {
+  background-color: #21262D;
+  border-color: #484F58;
+}
+
+.btn-secondary:active {
+  background-color: #30363D;
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #8B949E;
+  transition: all 150ms ease-out;
+}
+
+.btn-icon:hover {
+  background-color: #21262D;
+  color: #E6EDF3;
+}
+
+.btn-icon:active {
+  background-color: #30363D;
+}
+
+.btn-icon.active {
+  color: #58A6FF;
+  background-color: rgba(88, 166, 255, 0.1);
+}
+
+/* Input Styles */
+.input {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  color: #E6EDF3;
+  background-color: #161B22;
+  border: 1px solid #30363D;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
+}
+
+.input:focus {
+  border-color: #58A6FF;
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
+}
+
+.input::placeholder {
+  color: #6E7681;
+}
+
+/* Toggle Switch */
+.toggle {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background-color: #30363D;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 200ms ease-out;
+}
+
+.toggle.active {
+  background-color: rgba(88, 166, 255, 0.6);
+}
+
+.toggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: #8B949E;
+  border-radius: 50%;
+  transition: transform 200ms ease-out, background-color 200ms ease-out;
+}
+
+.toggle.active::after {
+  transform: translateX(20px);
+  background-color: #58A6FF;
+}
+
+.toggle:hover::after {
+  background-color: #E6EDF3;
+}
+
+/* Resizable Divider */
+.resizer {
+  width: 4px;
+  height: 100%;
+  background-color: #30363D;
+  cursor: col-resize;
+  transition: background-color 150ms ease-out;
+}
+
+.resizer:hover {
+  background-color: #58A6FF;
+}
+
+.resizer:active {
+  background-color: #58A6FF;
+}
